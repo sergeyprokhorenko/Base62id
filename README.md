@@ -121,7 +121,18 @@ When encoding UUIDs with the prescribed prefix:
 
 ## 9. Length Considerations
 
-A 128-bit UUID with a 2-bit prefix requires representation of a 130-bit integer. Each Base62id character represents approximately 5.954 bits. The minimum number of characters required to represent 130 bits is 22, because 62^21 < 2^130 ≤ 62^22.
+The 130-bit composite value formed by a 128-bit UUID and a 2-bit prefix requires exactly 22 Base62id characters, as 62²¹ < 2¹³⁰ ≤ 62²².
+
+The prefix value 2 ensures the first encoded character is always a letter. Mathematically:
+
+- N = 2 × 2¹²⁸ + D, where 0 ≤ D ≤ 2¹²⁸ − 1
+- Thus 2¹²⁹ ≤ N ≤ 2¹²⁹ + 2¹²⁸ − 1
+
+The first character's index is floor(N / 62²¹). Calculating bounds:
+- Minimum: floor(2¹²⁹ / 62²¹) ≈ floor(15.7) = 15
+- Maximum: floor((2¹²⁹ + 2¹²⁸ − 1) / 62²¹) ≈ floor(23.6) = 23
+
+Since 15 ≤ index ≤ 23, and alphabet indices 10–35 are uppercase letters A–Z, the first character is guaranteed to be A–Z.
 
 ## 10. Examples
 
