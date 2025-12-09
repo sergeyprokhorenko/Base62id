@@ -81,7 +81,7 @@ The encoding process converts the composite integer N into a Base62id string S.
 
 The decoding process converts a Base62id string S back to the original binary data.
 
-1. If S is empty, the decoded value is 0. Proceed to step 4.
+1. If S is empty, the decoded value is 0, or it is an error. Proceed to step 4.
 
 2. Initialize N = 0. For each character C in S from left to right:
 
