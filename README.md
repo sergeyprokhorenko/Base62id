@@ -3,10 +3,10 @@
 ## 1. Introduction
 
 Base62id is a scheme for encoding arbitrary binary data into a text string using a sixty-two-character alphabet. This scheme is designed with the following specific properties:
-1.  It preserves the lexicographic sort order of encoded strings relative to the numeric (big-endian) order of the original binary data.
-2.  It encodes any standard 128-bit UUID into a string of exactly twenty-two characters.
-3.  The encoded string is guaranteed never to begin with a decimal digit (0-9).
-4.  It can encode binary input of variable length, with the output length being variable for non-UUID inputs.
+1.  It encodes any standard 128-bit UUID into a string of exactly twenty-two characters.
+2.  It preserves the lexicographic sort order of encoded strings relative to the numeric (big-endian) order of the original binary data.
+3.  It can encode binary input of variable length, with the output length being variable for non-UUID inputs.
+4.  The encoded string is guaranteed never to begin with a decimal digit (0-9).
 
 ## 2. Requirements Notation
 
