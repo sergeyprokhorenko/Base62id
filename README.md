@@ -15,7 +15,7 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "S
 ## 3. Alphabet
 The Base62id encoding uses a fixed, ordered alphabet of 62 characters, corresponding to their sequence in the ASCII table: `0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz`
 
-Each character is assigned a numeric index based on its position in this sequence, starting from 0 for the character '0' up to 61 for the character 'z':
+Each character is assigned a numeric index based on its position in this sequence, starting from 0 for the character `0` up to 61 for the character `z`:
 
 | Index | Сharacter | Index | Сharacter | Index | Сharacter | Index | Сharacter |
 |------:|:----------|------:|:----------|------:|:----------|------:|:----------|
@@ -84,8 +84,8 @@ The process to convert a Base62id string back into its original binary data is d
 ## 8. Properties for UUID Encoding
 
 *   **Fixed Length:** The encoding of any 128-bit UUID always results in a string of twenty-two characters.
+*   *   **Order Preservation:** For any two UUIDs A and B, where A is numerically less than B when compared as 128-bit big-endian integers, the Base62id string for A will be lexicographically less than the string for B.
 *   **No Leading Digit:** The first character of any valid encoded UUID string is always a letter (A-Z or a-z).
-*   **Order Preservation:** For any two UUIDs A and B, where A is numerically less than B when compared as 128-bit big-endian integers, the Base62id string for A will be lexicographically less than the string for B.
 
 ## 9. Length Justification
 A standard UUID requires 128 bits of information. The 2-bit prefix adds an overhead of 2 bits, creating a composite value of 130 bits. The number of base-62 digits d required to represent a non-negative integer n is given by the smallest integer d such that 62ᵈ > n. For n = 2¹³⁰ - 1, the smallest integer d satisfying this inequality is 22. Therefore, twenty-two characters are necessary and sufficient to represent any 130-bit composite value. The specific prefix value of 2 ensures the composite integer always falls within the precise numeric range that maps to a 22-digit base-62 representation beginning with a non-zero digit in the alphabet.
