@@ -110,7 +110,7 @@ A 128-bit UUID plus 2-bit prefix requires representing values up to 130 bits. Ea
 |------|--------------------|-------------------|
 | Nil UUID | `00000000-0000-0000-0000-000000000000` | `A000000000000000000000` |
 | Max UUID | `ffffffff-ffff-ffff-ffff-ffffffffffff` | `zZZZZZZZZZZZZZZZZZZZZZ` |
-| Example UUID | `f81d4fae-7dec-11d0-a765-00a0c91e6bf6` | `7qL8kP2mN4vR9tX5bY3cZ6dW0eF1gH2iJ` |
+| Example UUID | `f81d4fae-7dec-11d0-a765-00a0c91e6bf6` | `K8xJ3mP5nQ7rT9vX2yB4cD` |
 
 ## 11. References
 
