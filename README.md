@@ -36,9 +36,13 @@ The process to convert prepared binary data into a Base62id string is defined as
 1.  Let N be the composite integer value obtained from the Data Preparation step.
 2.  Initialize an empty output string S.
 3.  While the integer N is greater than zero, repeat the following steps:
+
     a. Calculate the remainder R of the division N ÷ 62.
+
     b. Find the character in the alphabet at the index equal to R.
+
     c. Prepend this character to the beginning of the string S.
+
     d. Replace N with the quotient of the integer division N ÷ 62.
 4.  If the original input was a 128-bit UUID, the string S will contain exactly twenty-two characters. For other input lengths, the string length will vary accordingly.
 
