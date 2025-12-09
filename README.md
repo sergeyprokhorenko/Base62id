@@ -139,7 +139,7 @@ Since 15 ≤ index ≤ 23, and alphabet indices 15–23 are uppercase letters F�
 | UUID | Hex Representation | Base62id Encoding |
 |------|--------------------|-------------------|
 | Nil UUID | `00000000-0000-0000-0000-000000000000` | `A000000000000000000000` |
-| Max UUID | `ffffffff-ffff-ffff-ffff-ffffffffffff` | `zVtP5e9qL3nWjYrKbXhGdMf` |
+| Max UUID | `ffffffff-ffff-ffff-ffff-ffffffffffff` | `zVtP5e9qL3nWjYrKbXhGdM` |
 | Example UUID | `f81d4fae-7dec-11d0-a765-00a0c91e6bf6` | `K8xJ3mP5nQ7rT9vX2yB4cD` |
 
 ## 11. Security Considerations
