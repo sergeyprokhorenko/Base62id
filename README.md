@@ -132,7 +132,7 @@ The first character's index is floor(N / 62²¹). Calculating bounds:
 - Minimum: floor(2¹²⁹ / 62²¹) ≈ floor(15.7) = 15
 - Maximum: floor((2¹²⁹ + 2¹²⁸ − 1) / 62²¹) ≈ floor(23.6) = 23
 
-Since 15 ≤ index ≤ 23, and alphabet indices 10–35 are uppercase letters A–Z, the first character is guaranteed to be A–Z.
+Since 15 ≤ index ≤ 23, and alphabet indices 15–23 are uppercase letters F–N, the first character is guaranteed to be an uppercase letter.
 
 ## 10. Examples
 
