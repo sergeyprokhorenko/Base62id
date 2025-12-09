@@ -13,11 +13,8 @@ The Base62id encoding uses a fixed, ordered alphabet of 62 characters, correspon
 
 Each character is assigned a numeric index based on its position in this sequence, starting from 0 for the character '0' up to 61 for the character 'z':
 
-Вот таблица в формате Markdown, полностью соответствующая исходной структуре из файла `Табличка.xlsx`:
-
-| A     | B         | C     | D         | E     | F         | G     | H         |
-|:------|:----------|:------|:----------|:------|:----------|:------|:----------|
 | Index | Сharacter | Index | Сharacter | Index | Сharacter | Index | Сharacter |
+|------:|:----------|------:|:----------|------:|:----------|------:|:----------|
 | 0     | 0         | 16    | G         | 32    | W         | 48    | m         |
 | 1     | 1         | 17    | H         | 33    | X         | 49    | n         |
 | 2     | 2         | 18    | I         | 34    | Y         | 50    | o         |
