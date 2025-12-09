@@ -20,7 +20,7 @@ Base62id uses a fixed, ordered 62-character alphabet: `0123456789ABCDEFGHIJKLMNO
 Each character maps to an index from 0 (`0`) to 61 (`z`):
 
 | Index | Character | Index | Character | Index | Character | Index | Character |
-|------:|-----------|------:|-----------|------:|-----------|------:|-----------|
+|-------|-----------|-------|-----------|-------|-----------|-------|-----------|
 | 0     | 0         | 16    | G         | 32    | W         | 48    | m         |
 | 1     | 1         | 17    | H         | 33    | X         | 49    | n         |
 | 2     | 2         | 18    | I         | 34    | Y         | 50    | o         |
@@ -42,7 +42,8 @@ Base62id strings MAY be enclosed in double quotes (U+0022). Decoders MUST accept
 
 ## 4. Prefix
 
-For UUIDs, a 2-bit prefix with binary value `10` (decimal 2) is used:
+For UUIDs, a 2-bit prefix with binary value `10` (decimal 2) is used. This prefix value of decimal 2 in binary is exactly the bits `10`. These two bits are placed at the beginning (most significant position) of the 130-bit composite value.
+
 - Ensures 22-character output for 128-bit input.
 - Guarantees first character is a letter (alphabet index 10 or greater).
 
@@ -51,7 +52,7 @@ For variable-length data, prefix is OPTIONAL (see section 5).
 ## 5. Data Preparation
 
 1. Interpret input data as a big-endian unsigned integer with bit length L.
-2. For UUID encoding: L = 128 bits. Form a composite integer by taking the prefix value 2, shifting it left by L bits (which multiplies it by 2^L), then adding the original data integer.
+2. For UUID encoding: L = 128 bits. Form a composite integer by taking the prefix value 2 (binary `10`), shifting it left by 128 bits, then adding the original 128-bit data integer. This places the prefix bits in the two most significant bit positions.
 3. For variable-length data: prefix MAY be omitted, in which case the composite integer equals the data integer directly, and output length varies.
 
 ## 6. Encoding Algorithm
@@ -77,9 +78,9 @@ The decoding process converts a Base62id string back to the original binary data
    a. Find the numeric index I of character C in the alphabet.
    b. Update N by multiplying current N by 62 and adding index I.
 3. For UUID decoding (when L=128 is known):
-   a. Extract the 2-bit prefix P by taking the integer quotient of N divided by 2^128 (effectively the two most significant bits).
+   a. Extract the 2-bit prefix P by taking the integer quotient of N divided by two raised to the power of 128 (this shifts right by 128 bits to get the two most significant bits).
    b. If P does not equal 2, the input string is invalid for UUID decoding.
-   c. Extract the original data by computing N modulo 2^128.
+   c. Extract the original data by computing N modulo two raised to the power of 128.
 4. Convert the resulting data integer back to its big-endian byte representation with length L/8 bytes.
 
 For variable-length data, the decoder MUST know the original bit length L in advance or obtain it from application context.
@@ -92,26 +93,15 @@ For variable-length data, the decoder MUST know the original bit length L in adv
 
 ## 9. Length Justification
 
-A 128-bit UUID plus 2-bit prefix requires representing values up to 130 bits. Each Base62id character encodes log2(62) ≈ 5.954 bits. To represent all possible 130-bit values requires at least ceil(130/5.954) = 22 characters, since 62^22 exceeds 2^130 while 62^21 does not. The prefix value 2 ensures all UUID encodings fall within the exact numeric range that produces 22-character representations beginning with a non-digit character.
+A 128-bit UUID plus 2-bit prefix requires representing values up to 130 bits. Each Base62id character encodes approximately 5.954 bits of information. To represent all possible 130-bit values requires at least 22 characters, since 62 raised to the power of 22 exceeds 2 raised to the power of 130 while 62 raised to the power of 21 does not. The prefix value 2 ensures all UUID encodings fall within the exact numeric range that produces 22-character representations beginning with a non-digit character.
 
 ## 10. Examples
 
-**Example 1: Zero UUID**
-- Input UUID: `00000000-0000-0000-0000-000000000000`
-- Data integer: 0
-- Composite: 2 shifted left 128 bits (2 × 2^128)
-- Encoded: `A000000000000000000000` (22 characters, starts with 'A')
-
-**Example 2: Decoding**
-- Input: `A000000000000000000000`
-- Decode to N = 2 × 2^128
-- P = floor(N / 2^128) = 2 ✓ (valid)
-- Data = N mod 2^128 = 0 ✓ (zero UUID)
-
-**Example 3: Variable-length (no prefix)**
-- Input: 8-bit value `0xFF` (255)
-- Composite: 255
-- Encoded: `4j` (variable length)
+| UUID | Hex Representation | Base62id Encoding |
+|------|--------------------|-------------------|
+| Nil UUID | `00000000-0000-0000-0000-000000000000` | `A000000000000000000000` |
+| Max UUID | `ffffffff-ffff-ffff-ffff-ffffffffffff` | `zZZZZZZZZZZZZZZZZZZZZZ` |
+| Example UUID | `f81d4fae-7dec-11d0-a765-00a0c91e6bf6` | `7qL8kP2mN4vR9tX5bY3cZ6dW0eF1gH2iJ` |
 
 ## 11. References
 
