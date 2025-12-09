@@ -9,13 +9,33 @@ Base62id is a scheme for encoding arbitrary binary data into a text string using
 4.  It can encode binary input of variable length, with the output length being variable for non-UUID inputs.
 
 ## 2. Alphabet
+The Base62id encoding uses a fixed, ordered alphabet of 62 characters, corresponding to their sequence in the ASCII table: `0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz`
 
-The encoding uses a fixed, ordered alphabet of 62 characters, corresponding to their sequence in the ASCII table:
-The ten decimal digits: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9.
-The twenty-six uppercase Latin letters: A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z.
-The twenty-six lowercase Latin letters: a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z.
+Each character is assigned a numeric index based on its position in this sequence, starting from 0 for the character '0' up to 61 for the character 'z':
 
-Each character is assigned a numeric index based on its position in this sequence, starting from 0 for the character '0' up to 61 for the character 'z'.
+Вот таблица в формате Markdown, полностью соответствующая исходной структуре из файла `Табличка.xlsx`:
+
+| A     | B         | C     | D         | E     | F         | G     | H         |
+|:------|:----------|:------|:----------|:------|:----------|:------|:----------|
+| Index | Сharacter | Index | Сharacter | Index | Сharacter | Index | Сharacter |
+| 0     | 0         | 16    | G         | 32    | W         | 48    | m         |
+| 1     | 1         | 17    | H         | 33    | X         | 49    | n         |
+| 2     | 2         | 18    | I         | 34    | Y         | 50    | o         |
+| 3     | 3         | 19    | J         | 35    | Z         | 51    | p         |
+| 4     | 4         | 20    | K         | 36    | a         | 52    | q         |
+| 5     | 5         | 21    | L         | 37    | b         | 53    | r         |
+| 6     | 6         | 22    | M         | 38    | c         | 54    | s         |
+| 7     | 7         | 23    | N         | 39    | d         | 55    | t         |
+| 8     | 8         | 24    | O         | 40    | e         | 56    | u         |
+| 9     | 9         | 25    | P         | 41    | f         | 57    | v         |
+| 10    | A         | 26    | Q         | 42    | g         | 58    | w         |
+| 11    | B         | 27    | R         | 43    | h         | 59    | x         |
+| 12    | C         | 28    | S         | 44    | i         | 60    | y         |
+| 13    | D         | 29    | T         | 45    | j         | 61    | z         |
+| 14    | E         | 30    | U         | 46    | k         |       |           |
+| 15    | F         | 31    | V         | 47    | l         |       |           |
+
+Base62id strings MAY be enclosed in double quotes (U+0022, `"`) when necessary. Decoders MUST accept both quoted and unquoted forms of Base62id strings and remove the quotes before processing the Base62id value.
 
 ## 3. Prefix
 
