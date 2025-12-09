@@ -62,12 +62,16 @@ The encoding process converts the prepared composite integer into a Base62id str
 1. Start with the composite integer N from the data preparation step.
 2. Initialize an empty output string S.
 3. While N is greater than zero:
+   
    a. Compute remainder R when N is divided by 62.
+
    b. Select the character from the alphabet at position R.
+
    c. Prepend this character to the beginning of string S.
+
    d. Replace N with the quotient obtained by dividing N by 62 (discard remainder).
-4. For UUID encoding: if the resulting string has fewer than 22 characters, pad it on the left with '0' characters until it reaches exactly 22 characters.
-5. The final string S is the Base62id encoding.
+5. For UUID encoding: if the resulting string has fewer than 22 characters, pad it on the left with '0' characters until it reaches exactly 22 characters.
+6. The final string S is the Base62id encoding.
 
 ## 7. Decoding Algorithm
 
@@ -75,11 +79,15 @@ The decoding process converts a Base62id string back to the original binary data
 
 1. Initialize integer N to zero.
 2. For each character C in the input string, processed from left to right:
+
    a. Find the numeric index I of character C in the alphabet.
+
    b. Update N by multiplying current N by 62 and adding index I.
 3. For UUID decoding (when L=128 is known):
    a. Extract the 2-bit prefix P by taking the integer quotient of N divided by two raised to the power of 128 (this shifts right by 128 bits to get the two most significant bits).
+ 
    b. If P does not equal 2, the input string is invalid for UUID decoding.
+
    c. Extract the original data by computing N modulo two raised to the power of 128.
 4. Convert the resulting data integer back to its big-endian byte representation with length L/8 bytes.
 
