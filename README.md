@@ -20,7 +20,7 @@ Base62id uses a fixed, ordered 62-character alphabet: `0123456789ABCDEFGHIJKLMNO
 Each character maps to an index from 0 (`0`) to 61 (`z`):
 
 | Index | Character | Index | Character | Index | Character | Index | Character |
-|-------|-----------|-------|-----------|-------|-----------|-------|-----------|
+|------:|-----------|------:|-----------|------:|-----------|------:|-----------|
 | 0     | 0         | 16    | G         | 32    | W         | 48    | m         |
 | 1     | 1         | 17    | H         | 33    | X         | 49    | n         |
 | 2     | 2         | 18    | I         | 34    | Y         | 50    | o         |
