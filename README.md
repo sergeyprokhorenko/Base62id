@@ -84,12 +84,13 @@ The decoding process converts a Base62id string back to the original binary data
 
    b. Update N by multiplying current N by 62 and adding index I.
 3. For UUID decoding (when L=128 is known):
+
    a. Extract the 2-bit prefix P by taking the integer quotient of N divided by two raised to the power of 128 (this shifts right by 128 bits to get the two most significant bits).
  
    b. If P does not equal 2, the input string is invalid for UUID decoding.
 
    c. Extract the original data by computing N modulo two raised to the power of 128.
-4. Convert the resulting data integer back to its big-endian byte representation with length L/8 bytes.
+5. Convert the resulting data integer back to its big-endian byte representation with length L/8 bytes.
 
 For variable-length data, the decoder MUST know the original bit length L in advance or obtain it from application context.
 
