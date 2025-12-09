@@ -89,3 +89,10 @@ The process to convert a Base62id string back into its original binary data is d
 
 ## 9. Length Justification
 A standard UUID requires 128 bits of information. The 2-bit prefix adds an overhead of 2 bits, creating a composite value of 130 bits. The number of base-62 digits d required to represent a non-negative integer n is given by the smallest integer d such that 62ᵈ > n. For n = 2¹³⁰ - 1, the smallest integer d satisfying this inequality is 22. Therefore, twenty-two characters are necessary and sufficient to represent any 130-bit composite value. The specific prefix value of 2 ensures the composite integer always falls within the precise numeric range that maps to a 22-digit base-62 representation beginning with a non-zero digit in the alphabet.
+
+## 10. References
+
+- [RFC9562](https://datatracker.ietf.org/doc/html/rfc9562) Universally Unique IDentifiers (UUIDs)
+- [RFC4648](https://datatracker.ietf.org/doc/rfc4648/) The Base16, Base32, and Base64 Data Encodings
+- [RFC2119](https://datatracker.ietf.org/doc/html/rfc2119) Key words for use in RFCs to Indicate Requirement Levels
+- [RFC3986](https://datatracker.ietf.org/doc/html/rfc3986) Uniform Resource Identifier (URI): Generic Syntax
