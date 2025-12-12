@@ -77,6 +77,30 @@ The encoding process converts the composite integer N into a Base62id string S.
 
 5. The string S is the Base62id encoding of the input data.
 
+```py
+ALPHABET = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
+
+def base62id_encode(uuid_int: int) -> str:
+    """
+    Base62id encoding: 128-bit UUID → 22 characters (always starts with letter)
+    Specification: Add "10" binary prefix + 4×32-bit blocks → 22 base62 digits
+    """
+    # Step 1: Add binary prefix "10" (guarantees first char ∈ [10-61])
+    value = (uuid_int << 2) | 0b10
+    
+    # Step 2: Split into 4×32-bit blocks (big-endian)
+    result = ""
+    for i in range(4):
+        block = (value >> (i * 32)) & 0xFFFFFFFF
+        # Step 3: Each 32-bit block → exactly 5 base62 digits
+        for _ in range(5):
+            result = ALPHABET[block % 62] + result
+            block //= 62
+    
+    # Returns exactly 22 characters, first char is always A-Z or a-z
+    return result
+```
+
 ## 7. Decoding Process
 
 The decoding process converts a Base62id string S back to the original binary data.
@@ -111,6 +135,28 @@ The decoding process converts a Base62id string S back to the original binary da
 
 5. Convert the integer D to a big-endian byte string of length ceil(L/8) bytes.
 
+```py
+def base62id_decode(encoded: str) -> int:
+    """
+    Base62id decoding: 22 characters → 128-bit UUID integer
+    Specification: Decode 22 base62 digits → remove "10" prefix
+    """
+    if len(encoded) != 22:
+        raise ValueError("Base62id must be exactly 22 characters")
+    
+    # Step 1: Decode 22 base62 digits to 130-bit integer
+    value = 0
+    for char in encoded:
+        value = value * 62 + ALPHABET.index(char)
+    
+    # Step 2: Verify and remove binary prefix "10"
+    if (value & 0b11) != 0b10:
+        raise ValueError("Invalid Base62id: prefix must be '10'")
+    
+    # Step 3: Return original 128-bit UUID
+    return value >> 2
+```
+
 ## 8. UUID Properties
 
 When encoding UUIDs with the prescribed prefix:
@@ -138,9 +184,9 @@ Since 15 ≤ index ≤ 23, and alphabet indices 15–23 are uppercase letters F�
 
 | UUID | Hex Representation | Base62id Encoding |
 |------|--------------------|-------------------|
-| Nil UUID | `00000000-0000-0000-0000-000000000000` | `Fa84QWiAxLXUJaHZmEVPEG` |
-| Max UUID | `ffffffff-ffff-ffff-ffff-ffffffffffff` | `NNC6dn4GR1JETNQMfLl6qN` |
-| Example UUIDv7 | `018c5a3d-9b4e-7f2a-8c1d-e5f67890abcd` | `GMbtuksNUDON7n3MASSUGf` |
+| Nil UUID | `00000000-0000-0000-0000-000000000000` | `GAAAAAAAAAAAAAAAAAAAAAA` |
+| Max UUID | `ffffffff-ffff-ffff-ffff-ffffffffffff` | `nnnnnnnnnnnnnnnnnnnnnn` |
+| Example UUIDv7 | `018c5a3d-9b4e-7f2a-8c1d-e5f67890abcd` | `GMbtuksNUDON7n3MASSUGf2gHiJkLmNoP` |
 | Example UUIDv4 | `123e4567-e89b-12d3-a456-426614174000` | `I7mPqRtUvWxYzAbCdEfGHIJ` |
 
 ## 11. Security Considerations
