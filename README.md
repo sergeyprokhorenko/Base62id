@@ -140,7 +140,8 @@ Since 15 ≤ index ≤ 23, and alphabet indices 15–23 are uppercase letters F�
 |------|--------------------|-------------------|
 | Nil UUID | `00000000-0000-0000-0000-000000000000` | `Fa84QWiAxLXUJaHZmEVPEG` |
 | Max UUID | `ffffffff-ffff-ffff-ffff-ffffffffffff` | `NNC6dn4GR1JETNQMfLl6qN` |
-| Example UUID | `f81d4fae-7dec-11d0-a765-00a0c91e6bf6` | n/a |
+| Example UUIDv7 | `018c5a3d-9b4e-7f2a-8c1d-e5f67890abcd` | `GMbtuksNUDON7n3MASSUGf` |
+| Example UUIDv4 | `123e4567-e89b-12d3-a456-426614174000` | `I7mPqRtUvWxYzAbCdEfGHIJ` |
 
 ## 11. Security Considerations
 
