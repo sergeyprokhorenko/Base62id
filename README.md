@@ -77,7 +77,7 @@ The encoding process converts the composite integer N into a Base62id string S.
 
 5. The string S is the Base62id encoding of the input data.
 
-### Example of program code:
+### Example of Python program code
 
 ```py
 ALPHABET = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
@@ -137,7 +137,7 @@ The decoding process converts a Base62id string S back to the original binary da
 
 5. Convert the integer D to a big-endian byte string of length ceil(L/8) bytes.
 
-### Example of program code:
+### Example of Python program code
 
 ```py
 def base62id_decode(encoded: str) -> int:
