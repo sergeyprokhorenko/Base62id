@@ -141,7 +141,7 @@ ALPHABET = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
 
 def base62id_encode(uuid_int: int) -> str:
     """Base62id: 128-bit UUID → exactly 22 chars"""
-    # Pad to 130 bits (2 extra bits for prefix/alphabet range)
+    # Pad to 130 bits (2 extra bits for prefix)
     value = uuid_int << 2 | 0b10  # Add 2-bit prefix
     
     result = ""
@@ -152,8 +152,6 @@ def base62id_encode(uuid_int: int) -> str:
 
 def base62id_decode(encoded: str) -> int:
     """22 chars → 128-bit UUID"""
-    if len(encoded) != 22:
-        raise ValueError("Base62id must be 22 chars")
     
     value = 0
     for char in encoded:
