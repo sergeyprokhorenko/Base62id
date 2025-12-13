@@ -145,7 +145,7 @@ def base62id_encode(uuid_int: int) -> str:
     value = uuid_int << 2 | 0b10  # Add 2-bit prefix
     
     result = ""
-    for _ in range(22):  # 22 base62 digits for 130 bits
+    for _ in range(22):  # 22 base62 chars for 130 bits
         result = ALPHABET[value % 62] + result
         value //= 62
     return result
