@@ -169,7 +169,7 @@ def base62id_decode(encoded: str) -> int:
 |------|--------------------|-------------------|
 | Nil UUID | `00000000-0000-0000-0000-000000000000` | `` |
 | Max UUID | `ffffffff-ffff-ffff-ffff-ffffffffffff` | `` |
-| Example UUIDv7 | `018c5a3d-9b4e-7f2a-8c1d-e5f67890abcd` | `` |
+| Example UUIDv7 | `019b1515-3df8-7032-bfc6-06b5e46ff8f4` | `` |
 | Example UUIDv4 | `123e4567-e89b-12d3-a456-426614174000` | `` |
 
 ## 12. Security Considerations
