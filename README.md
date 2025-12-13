@@ -140,29 +140,26 @@ Since 15 ≤ index ≤ 23, and alphabet indices 15–23 are uppercase letters F�
 ALPHABET = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
 
 def base62id_encode(uuid_int: int) -> str:
-    """
-    Base62id: 128-bit UUID → 22 chars (starts with letter via "10" prefix)
-    """
-    value = (uuid_int << 2) | 0b10  # Add prefix "10"
+    """Base62id: 128-bit UUID → exactly 22 chars"""
+    # Pad to 130 bits (2 extra bits for prefix/alphabet range)
+    value = uuid_int << 2 | 0b10  # or any prefix ensuring first char ∈ [10-61]
+    
     result = ""
-    for i in range(4):
-        block = (value >> (i * 32)) & 0xFFFFFFFF
-        for _ in range(5):
-            result = ALPHABET[block % 62] + result
-            block //= 62
-    return result  # Exactly 22 chars
+    for _ in range(22):  # 22 base62 digits for 130 bits
+        result = ALPHABET[value % 62] + result
+        value //= 62
+    return result
 
 def base62id_decode(encoded: str) -> int:
-    """
-    Base62id: 22 chars → 128-bit UUID
-    """
+    """22 chars → 128-bit UUID"""
     if len(encoded) != 22:
         raise ValueError("Base62id must be 22 chars")
+    
     value = 0
     for char in encoded:
         value = value * 62 + ALPHABET.index(char)
-    if (value & 0b11) != 0b10:
-        raise ValueError("Invalid Base62id prefix")
+    
+    # Remove 2-bit prefix
     return value >> 2
 ```
 
