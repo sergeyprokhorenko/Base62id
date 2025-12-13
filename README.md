@@ -142,7 +142,7 @@ ALPHABET = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
 def base62id_encode(uuid_int: int) -> str:
     """Base62id: 128-bit UUID → exactly 22 chars"""
     # Pad to 130 bits (2 extra bits for prefix/alphabet range)
-    value = uuid_int << 2 | 0b10  # or any prefix ensuring first char ∈ [10-61]
+    value = uuid_int << 2 | 0b10  # Add 2-bit prefix
     
     result = ""
     for _ in range(22):  # 22 base62 digits for 130 bits
@@ -167,10 +167,10 @@ def base62id_decode(encoded: str) -> int:
 
 | UUID | Hex Representation | Base62id Encoding |
 |------|--------------------|-------------------|
-| Nil UUID | `00000000-0000-0000-0000-000000000000` | `GAAAAAAAAAAAAAAAAAAAAAA` |
-| Max UUID | `ffffffff-ffff-ffff-ffff-ffffffffffff` | `nnnnnnnnnnnnnnnnnnnnnn` |
-| Example UUIDv7 | `018c5a3d-9b4e-7f2a-8c1d-e5f67890abcd` | `GMbtuksNUDON7n3MASSUGf2gHiJkLmNoP` |
-| Example UUIDv4 | `123e4567-e89b-12d3-a456-426614174000` | `I7mPqRtUvWxYzAbCdEfGHIJ` |
+| Nil UUID | `00000000-0000-0000-0000-000000000000` | `` |
+| Max UUID | `ffffffff-ffff-ffff-ffff-ffffffffffff` | `` |
+| Example UUIDv7 | `018c5a3d-9b4e-7f2a-8c1d-e5f67890abcd` | `` |
+| Example UUIDv4 | `123e4567-e89b-12d3-a456-426614174000` | `` |
 
 ## 12. Security Considerations
 
