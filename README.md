@@ -140,25 +140,34 @@ Since 15 ≤ index ≤ 23, and alphabet indices 15–23 are uppercase letters F�
 ALPHABET = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
 
 def base62id_encode(uuid_int: int) -> str:
-    """Base62id: 128-bit UUID → exactly 22 chars"""
-    # Pad to 130 bits (2 extra bits for prefix)
-    value = uuid_int << 2 | 0b10  # Add 2-bit prefix
-    
-    result = ""
-    for _ in range(22):  # 22 base62 chars for 130 bits
-        result = ALPHABET[value % 62] + result
+    """
+    Encode 128-bit UUID integer into a 22-character Base62id string.
+    Uses a 2-bit prefix '10' in the most significant bits.
+    """
+    # Add 2-bit prefix '10' in the most significant bits → 130-bit value
+    value = (0b10 << 128) | uuid_int
+
+    # Encode 130-bit value into 22 base62 digits (most significant first)
+    chars = ["0"] * 22
+    for i in range(21, -1, -1):
+        chars[i] = ALPHABET[value % 62]
         value //= 62
-    return result
+
+    return "".join(chars)
 
 def base62id_decode(encoded: str) -> int:
-    """22 chars → 128-bit UUID"""
-    
+    """
+    Decode 22-character Base62id string back into a 128-bit UUID integer.
+    Assumes a 2-bit prefix '10' in the most significant bits was used.
+    """
+    # Decode 22 base62 digits into a 130-bit integer
     value = 0
-    for char in encoded:
-        value = value * 62 + ALPHABET.index(char)
-    
-    # Remove 2-bit prefix
-    return value >> 2
+    for ch in encoded:
+        value = value * 62 + ALPHABET.index(ch)
+
+    # Strip the 2-bit most significant prefix `10` and recover 128-bit UUID
+    uuid_int = value & ((1 << 128) - 1)
+    return uuid_int
 ```
 
 ## 11. Data Examples
