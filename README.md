@@ -48,9 +48,7 @@ Form the composite 130-bit integer N = P × 2<sup>128</sup> + D.
 The encoding process converts the composite integer N into a Base62id string S.
 
 1. If N = 0, set S = "0" and skip to step 4.
-
 2. Initialize S as an empty string.
-
 3. While N > 0:
 
    a. Compute R = N mod 62.
@@ -62,7 +60,6 @@ The encoding process converts the composite integer N into a Base62id string S.
    d. Set N = floor(N / 62).
 
 4. For UUID encoding, the resulting string S is exactly 22 characters long.
-
 5. The string S is the Base62id encoding of the input data.
 
 ## 6. Decoding Process
@@ -71,10 +68,13 @@ The decoding process converts a Base62id string S back to the original 128-bit U
 
 1. Initialize N = 0.
 2. For each character C in S from left to right:
+
    a. Find the index I of C in the alphabet (Table 1).
+   
    b. Set N = N × 62 + I.
-3. The resulting integer is the composite 130-bit value N.
-4. Extract the original UUID integer by removing the 2-bit prefix: D = N mod 2<sup>128</sup>.
+   
+4. The resulting integer is the composite 130-bit value N.
+5. Extract the original UUID integer by removing the 2-bit prefix: D = N mod 2<sup>128</sup>.
 
 ## 7. Example of Python program code
 
