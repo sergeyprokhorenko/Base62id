@@ -47,7 +47,7 @@ Form the composite 130-bit integer N = P × 2<sup>128</sup> + D.
 
 When encoding binary UUIDs with the prescribed prefix:
 
-- The encoded string is exactly 22 characters in length. The composite value N formed by a 128-bit UUID and a 2-bit prefix is a 130-bit integer. Because 62²¹ < 2¹³⁰ ≤ 62²², the Base62id representation of N always occupies exactly 22 characters.
+- The encoded string is exactly 22 characters in length. This is because the composite value N is a 130-bit integer, and 62²¹ < 2¹³⁰ ≤ 62²².
 - Lexicographic ordering of encoded strings corresponds to numeric ordering of the original UUIDs when compared as 128-bit big-endian integers.
 - The first character of the encoded string is always an uppercase letter (A-Z), never a digit (0-9).
 
