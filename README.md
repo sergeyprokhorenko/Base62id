@@ -47,7 +47,7 @@ Form the composite 130-bit integer N = P × 2<sup>128</sup> + D.
 
 When encoding binary UUIDs with the prescribed prefix:
 
-- The encoded string is exactly 22 characters in length. The composite value *N* formed by a 128-bit UUID and a 2-bit prefix is a 130-bit integer. Because 62²¹ < 2¹³⁰ ≤ 62²², the Base62id representation of *N* always occupies exactly 22 characters.
+- The encoded string is exactly 22 characters in length. The composite value N formed by a 128-bit UUID and a 2-bit prefix is a 130-bit integer. Because 62²¹ < 2¹³⁰ ≤ 62²², the Base62id representation of N always occupies exactly 22 characters.
 - Lexicographic ordering of encoded strings corresponds to numeric ordering of the original UUIDs when compared as 128-bit big-endian integers.
 - The first character of the encoded string is always an uppercase letter (A-Z), never a digit (0-9).
 
@@ -75,14 +75,14 @@ The encoding process converts the composite integer N into a Base62id string S.
 
 ## 7. Decoding Process
 
-The decoding process converts a Base62id string *S* back to the original 128-bit UUID integer *D*.
+The decoding process converts a Base62id string S back to the original 128-bit UUID integer D.
 
-1. Initialize *N* = 0.
-2. For each character *C* in *S* from left to right:
-   a. Find the index *I* of *C* in the alphabet (Table 1).
-   b. Set *N* = *N* × 62 + *I*.
-3. The resulting integer is the composite 130-bit value *N*.
-4. Extract the original UUID integer by removing the 2-bit prefix: *D* = *N* mod 2<sup>128</sup>.
+1. Initialize N = 0.
+2. For each character C in S from left to right:
+   a. Find the index I of C in the alphabet (Table 1).
+   b. Set N = N × 62 + I.
+3. The resulting integer is the composite 130-bit value N.
+4. Extract the original UUID integer by removing the 2-bit prefix: D = N mod 2<sup>128</sup>.
 
 ## 8. Example of Python program code
 
