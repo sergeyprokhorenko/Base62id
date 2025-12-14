@@ -1,4 +1,4 @@
-# Base62id Encoding Specification for Binary UUID
+# Base62id Encoding Specification for Binary UUIDs
 
 ## 1. Introduction
 
@@ -35,17 +35,25 @@ Each character maps to an index from 0 (`0`) to 61 (`z`):
 
 Base62id strings MAY be enclosed in double quotes (U+0022). Decoders MUST accept both quoted and unquoted forms and remove quotes before processing.
 
-## 4. Prefix
-
-For UUID encoding, a fixed 2-bit prefix with binary value 10 (decimal 2) MUST be used. This prefix is placed at the most significant bit position of the composite value.
-
-## 5. Data Preparation
+## 4. Data Preparation
 
 The input UUID is interpreted as a big-endian unsigned 128-bit integer D.
 Let P = 2 (binary 10).
 Form the composite 130-bit integer N = P × 2<sup>128</sup> + D.
 
-## 6. Encoding Process
+## 5. Prefix
+
+For UUID encoding, a fixed 2-bit prefix with binary value 10 (decimal 2) MUST be used. This prefix is placed at the most significant bit position of the composite value.
+
+## 6. Properties
+
+When encoding binary UUIDs with the prescribed prefix:
+
+- The encoded string is exactly 22 characters in length.
+- Lexicographic ordering of encoded strings corresponds to numeric ordering of the original UUIDs when compared as 128-bit big-endian integers.
+- The first character of the encoded string is always a letter (A-Z or a-z), never a digit (0-9).
+
+## 7. Encoding Process
 
 The encoding process converts the composite integer N into a Base62id string S.
 
@@ -67,34 +75,11 @@ The encoding process converts the composite integer N into a Base62id string S.
 
 5. The string S is the Base62id encoding of the input data.
 
-## 7. Decoding Process
+## 8. Decoding Process
 
 Extract the original UUID integer: D = N mod 2<sup>128</sup>.
 
-## 8. Properties
-
-When encoding UUIDs with the prescribed prefix:
-
-- The encoded string is exactly 22 characters in length.
-- Lexicographic ordering of encoded strings corresponds to numeric ordering of the original UUIDs when compared as 128-bit big-endian integers.
-- The first character of the encoded string is always a letter (A-Z or a-z), never a digit (0-9).
-
-## 9. Length Considerations
-
-The 130-bit composite value formed by a 128-bit UUID and a 2-bit prefix requires exactly 22 Base62id characters, as 62²¹ < 2¹³⁰ ≤ 62²².
-
-The prefix value 2 ensures the first encoded character is always a letter. Mathematically:
-
-- N = 2 × 2¹²⁸ + D, where 0 ≤ D ≤ 2¹²⁸ − 1
-- Thus 2¹²⁹ ≤ N ≤ 2¹²⁹ + 2¹²⁸ − 1
-
-The first character's index is floor(N / 62²¹). Calculating bounds:
-- Minimum: floor(2¹²⁹ / 62²¹) ≈ floor(15.7) = 15
-- Maximum: floor((2¹²⁹ + 2¹²⁸ − 1) / 62²¹) ≈ floor(23.6) = 23
-
-Since 15 ≤ index ≤ 23, and alphabet indices 15–23 are uppercase letters F–N, the first character is guaranteed to be an uppercase letter.
-
-## 10. Example of Python program code
+## 9. Example of Python program code
 
 ```py
 ALPHABET = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
@@ -117,7 +102,7 @@ def base62id_decode(encoded):
     return value & ((1 << 128) - 1)  # remove prefix
 ```
 
-## 11. UUID Examples
+## 10. UUID Examples
 
 | UUID | Hex Representation | Base62id Encoding |
 |------|--------------------|-------------------|
@@ -126,11 +111,11 @@ def base62id_decode(encoded):
 | Example UUIDv7 | `019b1515-3df8-7032-bfc6-06b5e46ff8f4` | `Fd9w4CutiyWHZha547fAai` |
 | Example UUIDv4 | `123e4567-e89b-12d3-a456-426614174000` | `G8YOG5efuH94ezE3H5aIvQ` |
 
-## 12. Security Considerations
+## 11. Security Considerations
 
 Base62id encoding does not provide any security services. It is a data encoding scheme only.
 
-## 13. References
+## 12. References
 
 - [RFC9562](https://datatracker.ietf.org/doc/html/rfc9562) Universally Unique IDentifiers (UUIDs)
 - [RFC4648](https://datatracker.ietf.org/doc/rfc4648) The Base16, Base32, and Base64 Data Encodings
