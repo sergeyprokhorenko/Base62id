@@ -73,7 +73,7 @@ The encoding process converts the composite integer N into a Base62id string S.
 
    d. Set N = floor(N / 62).
 
-4. For UUID encoding, the resulting string S MUST have exactly 22 characters. If it does not, the encoding is invalid.
+4. For UUID encoding, the resulting string S will be exactly 22 characters long.
 
 5. The string S is the Base62id encoding of the input data.
 
@@ -81,7 +81,7 @@ The encoding process converts the composite integer N into a Base62id string S.
 
 The decoding process converts a Base62id string S back to the original binary data.
 
-1. If S is empty, the decoded value is 0, or it is an error. Proceed to step 4.
+1. If S is empty, the decoded value is 0. Proceed to step 4.
 
 2. Initialize N = 0. For each character C in S from left to right:
 
@@ -93,21 +93,11 @@ The decoding process converts a Base62id string S back to the original binary da
 
 4. Extract the original data:
 
-   - For UUID decoding (L = 128):
-   
-        a. Compute P = floor(N / 2^128).
+   a. Compute P = floor(N / 2^128).
  
-        b. If P ≠ 2, the input string is invalid for UUID decoding.
+   b. If P ≠ 2, the input string is invalid for UUID decoding.
 
-        c. Compute D = N mod 2^128.
-
-   - For variable-length data with known L:
-
-        a. If a prefix was used, compute P = floor(N / 2^L) and verify P.
-
-        b. Compute D = N mod 2^L.
-
-   - For variable-length data without a prefix and without known L, the decoder MUST obtain L from context. Then D = N.
+   c. Compute D = N mod 2^128.
 
 5. Convert the integer D to a big-endian byte string of length ceil(L/8) bytes.
 
