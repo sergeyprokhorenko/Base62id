@@ -43,15 +43,7 @@ The input UUID is interpreted as a big-endian unsigned 128-bit integer D.
 Let P = 2 (binary 10).
 Form the composite 130-bit integer N = P × 2<sup>128</sup> + D.
 
-## 5. Properties
-
-When encoding binary UUIDs with the prescribed prefix:
-
-- The encoded string is exactly 22 characters in length. This is because the composite value N is a 130-bit integer, and 62²¹ < 2¹³⁰ ≤ 62²².
-- Lexicographic ordering of encoded strings corresponds to numeric ordering of the original UUIDs when compared as 128-bit big-endian integers.
-- The first character of the encoded string is always an uppercase letter (A-Z), never a digit (0-9).
-
-## 6. Encoding Process
+## 5. Encoding Process
 
 The encoding process converts the composite integer N into a Base62id string S.
 
@@ -73,7 +65,7 @@ The encoding process converts the composite integer N into a Base62id string S.
 
 5. The string S is the Base62id encoding of the input data.
 
-## 7. Decoding Process
+## 6. Decoding Process
 
 The decoding process converts a Base62id string S back to the original 128-bit UUID integer D.
 
@@ -84,7 +76,7 @@ The decoding process converts a Base62id string S back to the original 128-bit U
 3. The resulting integer is the composite 130-bit value N.
 4. Extract the original UUID integer by removing the 2-bit prefix: D = N mod 2<sup>128</sup>.
 
-## 8. Example of Python program code
+## 7. Example of Python program code
 
 ```py
 ALPHABET = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
@@ -107,7 +99,7 @@ def base62id_decode(encoded):
     return value & ((1 << 128) - 1)  # remove prefix
 ```
 
-## 9. UUID Encoding Examples
+## 8. UUID Encoding Examples
 
 | UUID | Hex Representation | Base62id Encoding |
 |------|--------------------|-------------------|
@@ -116,11 +108,11 @@ def base62id_decode(encoded):
 | Example UUIDv7 | `019b1515-3df8-7032-bfc6-06b5e46ff8f4` | `Fd9w4CutiyWHZha547fAai` |
 | Example UUIDv4 | `123e4567-e89b-12d3-a456-426614174000` | `G8YOG5efuH94ezE3H5aIvQ` |
 
-## 10. Security Considerations
+## 9. Security Considerations
 
 Base62id encoding does not provide any security services. It is a data encoding scheme only.
 
-## 11. References
+## 10. References
 
 - [RFC9562](https://datatracker.ietf.org/doc/html/rfc9562) Universally Unique IDentifiers (UUIDs)
 - [RFC4648](https://datatracker.ietf.org/doc/rfc4648) The Base16, Base32, and Base64 Data Encodings
