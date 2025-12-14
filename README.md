@@ -75,7 +75,7 @@ The encoding process converts the composite integer N into a Base62id string S.
 
 ## 7. Decoding Process
 
-Extract the original UUID integer: D = N mod 2<sup>128</sup>.
+Extract the original UUID integer without prefix: D = N mod 2<sup>128</sup>.
 
 ## 8. Example of Python program code
 
