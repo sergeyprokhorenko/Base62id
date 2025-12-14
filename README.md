@@ -35,17 +35,15 @@ Each character maps to an index from 0 (`0`) to 61 (`z`):
 
 Base62id strings MAY be enclosed in double quotes (U+0022). Decoders MUST accept both quoted and unquoted forms and remove quotes before processing.
 
-## 4. Data Preparation
+## 4. Prefix
+
+For UUID encoding, a fixed 2-bit prefix with binary value 10 (decimal 2) MUST be used. This prefix is placed at the most significant bit position of the composite value.
 
 The input UUID is interpreted as a big-endian unsigned 128-bit integer D.
 Let P = 2 (binary 10).
 Form the composite 130-bit integer N = P × 2<sup>128</sup> + D.
 
-## 5. Prefix
-
-For UUID encoding, a fixed 2-bit prefix with binary value 10 (decimal 2) MUST be used. This prefix is placed at the most significant bit position of the composite value.
-
-## 6. Properties
+## 5. Properties
 
 When encoding binary UUIDs with the prescribed prefix:
 
@@ -53,7 +51,7 @@ When encoding binary UUIDs with the prescribed prefix:
 - Lexicographic ordering of encoded strings corresponds to numeric ordering of the original UUIDs when compared as 128-bit big-endian integers.
 - The first character of the encoded string is always a letter (A-Z or a-z), never a digit (0-9).
 
-## 7. Encoding Process
+## 6. Encoding Process
 
 The encoding process converts the composite integer N into a Base62id string S.
 
@@ -75,11 +73,11 @@ The encoding process converts the composite integer N into a Base62id string S.
 
 5. The string S is the Base62id encoding of the input data.
 
-## 8. Decoding Process
+## 7. Decoding Process
 
 Extract the original UUID integer: D = N mod 2<sup>128</sup>.
 
-## 9. Example of Python program code
+## 8. Example of Python program code
 
 ```py
 ALPHABET = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
@@ -102,7 +100,7 @@ def base62id_decode(encoded):
     return value & ((1 << 128) - 1)  # remove prefix
 ```
 
-## 10. UUID Examples
+## 9. UUID Examples
 
 | UUID | Hex Representation | Base62id Encoding |
 |------|--------------------|-------------------|
@@ -111,11 +109,11 @@ def base62id_decode(encoded):
 | Example UUIDv7 | `019b1515-3df8-7032-bfc6-06b5e46ff8f4` | `Fd9w4CutiyWHZha547fAai` |
 | Example UUIDv4 | `123e4567-e89b-12d3-a456-426614174000` | `G8YOG5efuH94ezE3H5aIvQ` |
 
-## 11. Security Considerations
+## 10. Security Considerations
 
 Base62id encoding does not provide any security services. It is a data encoding scheme only.
 
-## 12. References
+## 11. References
 
 - [RFC9562](https://datatracker.ietf.org/doc/html/rfc9562) Universally Unique IDentifiers (UUIDs)
 - [RFC4648](https://datatracker.ietf.org/doc/rfc4648) The Base16, Base32, and Base64 Data Encodings
