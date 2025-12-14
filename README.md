@@ -107,7 +107,7 @@ def base62id_decode(encoded):
     return value & ((1 << 128) - 1)  # remove prefix
 ```
 
-## 9. UUID Examples
+## 9. UUID Encoding Examples
 
 | UUID | Hex Representation | Base62id Encoding |
 |------|--------------------|-------------------|
