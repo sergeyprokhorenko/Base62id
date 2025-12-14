@@ -168,6 +168,30 @@ def base62id_decode(encoded: str) -> int:
     # Strip the 2-bit most significant prefix `10` and recover 128-bit UUID
     uuid_int = value & ((1 << 128) - 1)
     return uuid_int
+
+
+
+
+
+    ALPHABET = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
+INDEX = {char: idx for idx, char in enumerate(ALPHABET)}  # lookup table for decoding
+
+def base62id_encode(uuid_int):
+    value = (0b10 << 128) | uuid_int                     # prepend '10' prefix (130 bits)
+    chars = ["0"] * 22                                   # 22 chars for 130 bits in base62
+    
+    for i in range(21, -1, -1):                          # from last to first
+        chars[i] = ALPHABET[value % 62]                  # map remainder to char
+        value //= 62                                     # shift right in base62
+    
+    return "".join(chars)                                # combine chars to string
+
+def base62id_decode(encoded):
+    value = 0
+    for char in encoded:
+        value = value * 62 + INDEX[char]                 # build integer from base62
+    
+    return value & ((1 << 128) - 1)                      # mask to remove 2-bit prefix
 ```
 
 ## 11. Data Examples
