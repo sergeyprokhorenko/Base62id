@@ -2,7 +2,7 @@
 
 ## 1. Introduction
 
-Base62id encodes 128-bit UUIDs into compact, order-preserving strings. The result is a fixed 22-character string using a 62-character alphabet with no special characters, making it URL-safe, HTML/XML/CSS-safe, and double-click selectable. The first character is always an uppercase letter.
+Base62id encodes 128-bit UUIDs into compact, order-preserving strings. The result is a 22-character string using a 62-character alphabet with no special characters, making it URL-safe, HTML/XML/CSS-safe, and double-click selectable. The first character is always an uppercase letter.
 
 ## 2. Conventions
 
