@@ -2,7 +2,7 @@
 
 ## 1. Introduction
 
-Base62id encoding is designed for encoding binary UUIDs into compact, order-preserving ASCII strings using 62 alphabet characters.
+Base62id encoding is designed for encoding binary UUIDs into compact, order-preserving ASCII strings using 62 alphabet characters, where the first character of the resulting string is guaranteed to be a letter
 
 ## 2. Conventions
 
