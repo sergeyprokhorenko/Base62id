@@ -108,11 +108,15 @@ def base62id_decode(encoded):
 | Example UUIDv7 | `019b1515-3df8-7032-bfc6-06b5e46ff8f4` | `Fd9w4CutiyWHZha547fAai` |
 | Example UUIDv4 | `123e4567-e89b-12d3-a456-426614174000` | `G8YOG5efuH94ezE3H5aIvQ` |
 
-## 9. Security Considerations
+## 9. Validation of arguments
+
+Validation of function arguments is optional. For invalid or NULL arguments: in SQL both functions return NULL; in other languages base62id_encode returns "" and base62id_decode returns 0.
+
+## 10. Security Considerations
 
 Base62id encoding does not provide any security services. It is a data encoding scheme only.
 
-## 10. References
+## 11. References
 
 - [RFC9562](https://datatracker.ietf.org/doc/html/rfc9562) Universally Unique IDentifiers (UUIDs)
 - [RFC4648](https://datatracker.ietf.org/doc/rfc4648) The Base16, Base32, and Base64 Data Encodings
