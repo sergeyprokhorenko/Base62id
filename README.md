@@ -103,7 +103,7 @@ def base62id_decode(encoded):
 
 | UUID | Hex Representation | Base62id Encoding |
 |------|--------------------|-------------------|
-| Nil UUID | `00000000-0000-0000-0000-000000000000` | `Fa84QWiAxLXUJaHZmEVPEG` |
+| Nil UUID (invalid) | `00000000-0000-0000-0000-000000000000` | `Fa84QWiAxLXUJaHZmEVPEG` (if without validation) |
 | Max UUID | `ffffffff-ffff-ffff-ffff-ffffffffffff` | `NNC6dn4GR1JETNQMfLl6qN` |
 | Example UUIDv7 | `019b1515-3df8-7032-bfc6-06b5e46ff8f4` | `Fd9w4CutiyWHZha547fAai` |
 | Example UUIDv4 | `123e4567-e89b-12d3-a456-426614174000` | `G8YOG5efuH94ezE3H5aIvQ` |
