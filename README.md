@@ -82,6 +82,8 @@ The decoding process converts a Base62id string S back to the original 128-bit U
 ALPHABET = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
 
 def base62id_encode(uuid_int):
+# For testing, it is recommended to use the uuid.uuid7() function from Python 3.14,
+# which ensures that UUIDs are generated within the same millisecond in ascending order
     value = (0b10 << 128) | uuid_int  # add prefix
     chars = ["0"] * 22
     
