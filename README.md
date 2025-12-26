@@ -83,7 +83,9 @@ ALPHABET = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
 
 def base62id_encode(uuid_int):
 # For testing, it is recommended to use the uuid.uuid7() function from Python 3.14,
-# which ensures that UUIDs are generated within the same millisecond in ascending order
+# which ensures that UUIDs are generated within the same millisecond in ascending order.
+# The uuid.uuid4() function is recommended for checking the assertion
+# that the first character is always an uppercase letter.
     value = (0b10 << 128) | uuid_int  # add prefix
     chars = ["0"] * 22
     
