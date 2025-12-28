@@ -86,7 +86,7 @@ def base62id_encode(uuid_int):
 # which ensures that UUIDs are generated within the same millisecond in ascending order.
 # The uuid.uuid4() function is recommended for checking the assertion
 # that the first character is always an uppercase letter.
-    value = (0b10 << 126) | uuid_int  # add prefix
+    value = (0b10 << 128) | uuid_int  # add prefix
     chars = ["0"] * 22
     
     for i in range(21, -1, -1):
