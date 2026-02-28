@@ -116,7 +116,7 @@ def base62id_decode(encoded):
 
 Validation of function arguments is optional. For invalid or NULL arguments: in SQL both functions return NULL; in other languages base62id_encode returns "" and base62id_decode returns 0.
 
-When decoding, an alternative to validating arguments can be to check the UUID against valid values.
+When decoding, an alternative to validating arguments MAY be to check the UUID against valid values.
 
 ## 10. Security Considerations
 
