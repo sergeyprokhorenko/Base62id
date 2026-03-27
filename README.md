@@ -4,6 +4,8 @@
 
 Base62id encodes 128-bit UUIDs into compact, order-preserving strings. The result is a 22-character string using a 62-character alphabet with no special characters, making it URL-safe, HTML/XML/CSS-safe, and double-click selectable. The first character is always an uppercase letter.
 
+For correct lexicographic sorting, it is necessary to use a locale that follows the ASCII order.
+
 ## 2. Conventions
 
 The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in RFC 2119.
