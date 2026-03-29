@@ -112,6 +112,8 @@ def base62id_decode(encoded):
 | Example UUIDv7 | `019b1515-3df8-7032-bfc6-06b5e46ff8f4` | `Fd9w4CutiyWHZha547fAai` |
 | Example UUIDv4 | `123e4567-e89b-12d3-a456-426614174000` | `G8YOG5efuH94ezE3H5aIvQ` |
 
+Calculate more examples in the [UUID Format Tester](https://uuidformattester.yuli.dev/).
+
 ## 9. Validation of arguments
 
 Validation of function arguments is OPTIONAL. For invalid or NULL arguments: in SQL both functions return NULL; in other languages base62id_encode returns "" and base62id_decode returns 0.
