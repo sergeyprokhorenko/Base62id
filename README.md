@@ -10,7 +10,7 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "S
 
 ## 3. Alphabet
 
-Base62id uses a fixed, ordered 62-character alphabet: `0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz`. For correct lexicographic sorting, it is necessary to use a locale that follows this order.
+Base62id uses a fixed, ordered 62-character alphabet: `0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz`. For correct lexicographic sorting you MUST use a binary‑safe collation like the C or POSIX locale. Human‑language locales do not follow this character order.
 
 Each character maps to an index from 0 (`0`) to 61 (`z`):
 
