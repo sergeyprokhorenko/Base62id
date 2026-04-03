@@ -107,7 +107,7 @@ def base62id_decode(encoded):
 
 ## 8. UUID Encoding Examples
 
-| UUID | Hex Representation | Base62id Encoding |
+| UUID | Hex-And-Dash String Format | Base62id Encoding |
 |------|--------------------|-------------------|
 | Nil UUID (invalid) | `00000000-0000-0000-0000-000000000000` | `Fa84QWiAxLXUJaHZmEVPEG` (if without validation) |
 | Max UUID | `ffffffff-ffff-ffff-ffff-ffffffffffff` | `NNC6dn4GR1JETNQMfLl6qN` |
