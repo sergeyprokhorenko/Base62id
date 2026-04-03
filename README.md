@@ -4,7 +4,7 @@
 
 Base62id encodes 128-bit UUIDs into compact, order-preserving strings. The result is a 22-character string using a 62-character alphabet with no special characters, making it URL-safe, HTML/XML/CSS-safe, and double-click selectable. The first character is always an uppercase letter.
 
-For manual entry by humans, for names of files on case‑insensitive filesystems (Windows, macOS), for sorting in Excel, or in any environment where automatic case‑folding or character confusion may occur, the canonical hyphenated base16 representation is RECOMMENDED over Base62id.
+For manual entry by humans, for names of files on case‑insensitive filesystems (Windows, macOS), for sorting in Excel, or in any environment where automatic case‑folding or character confusion may occur, the canonical hyphenated Base 16 representation is RECOMMENDED over Base62id.
 
 ## 2. Conventions
 
