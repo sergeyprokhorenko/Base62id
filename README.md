@@ -35,7 +35,7 @@ Each character maps to an index from 0 (`0`) to 61 (`z`):
 | 14    | E         | 30    | U         | 46    | k         |       |           |
 | 15    | F         | 31    | V         | 47    | l         |       |           |
 
-Base62id strings MAY be enclosed in double quotes (U+0022). Decoders MUST accept both quoted and unquoted forms and remove quotes before processing.
+Base62id strings MAY be enclosed in double quotes (U+0022) for JSON, CSV, and similar formats. For SQL, single quotes (U+0027) are REQUIRED. Decoders MUST accept both quoted and unquoted forms, removing the outer quotes before processing.
 
 ## 4. Prefix
 
