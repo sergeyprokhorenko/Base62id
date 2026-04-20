@@ -4,7 +4,7 @@
 
 Base62id encodes 128-bit UUIDs into compact, order-preserving strings. The result is a 22-character string using a 62-character alphabet with no special characters, making it URL-safe, HTML/XML/CSS-safe, and double-click selectable. The first character is always an uppercase letter.
 
-For keyboard entry, for filenames on case‑insensitive filesystems (Windows, macOS), for sorting in Excel, or wherever automatic case‑folding or character confusion may occur, the hex-and-dash string format is RECOMMENDED over Base62id. For all other use cases, Base62id is RECOMMENDED for UUID.
+For keyboard entry, for filenames on case‑insensitive filesystems (Windows, macOS), or wherever automatic case‑folding or character confusion may occur, the hex-and-dash string format is RECOMMENDED over Base62id. For all other use cases, Base62id is RECOMMENDED for UUID.
 
 ## 2. Conventions
 
@@ -12,7 +12,7 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "S
 
 ## 3. Alphabet
 
-Base62id uses a fixed, ordered 62-character alphabet: `0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz`. For correct lexicographic sorting, you MUST use a binary‑safe collation like the C or POSIX locale. Human‑language locales do not follow this character order. Excel and similar tools do not respect this character order because they use human‑language collation.
+Base62id uses a fixed, ordered 62-character alphabet: `0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz`. Human‑language locales and Excel do not follow this character order. Therefore by default, Base62id-encoded UUIDs SHOULD be sorted as character strings according to the applied locale. However, if necessary, sorting according to the internal binary representation is allowed. In that case, for correct lexicographic order you MUST use a binary‑safe collation like the C or POSIX locale.
 
 Each character maps to an index from 0 (`0`) to 61 (`z`):
 
