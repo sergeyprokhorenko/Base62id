@@ -12,7 +12,11 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "S
 
 ## 3. Alphabet
 
-Base62id uses a fixed, ordered 62-character alphabet: `0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz`. Human‑language locales and Excel do not follow this character order. Therefore by default, Base62id-encoded UUIDs SHOULD be sorted as character strings according to the applied locale. However, if necessary, sorting according to the internal binary representation is allowed. In that case, for correct lexicographic order you MUST use a binary‑safe collation like the C or POSIX locale.
+Base62id uses a fixed, ordered 62-character alphabet: `0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz`.
+
+Human‑language locales and Microsoft Excel do not follow this character order. Therefore, by default, Base62id‑encoded UUIDs SHOULD be sorted as character strings according to the applied locale (for example, when displaying to users, printing, or working with spreadsheets).
+
+However, if sorting according to the internal binary representation is necessary (e.g., to preserve the same order as the raw binary form), that is allowed. In such cases, to obtain correct lexicographic order, you MUST use a binary‑safe collation, such as the C or POSIX locale.
 
 Each character maps to an index from 0 (`0`) to 61 (`z`):
 
