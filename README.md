@@ -2,7 +2,7 @@
 
 ## 1. Introduction
 
-Base62id encodes 128-bit UUIDs into compact, order-preserving strings. The result is a 22-character string using a 62-character alphabet with no special characters, making it URL-safe, HTML/XML/CSS-safe, and double-click selectable. The first character is always an uppercase letter. In this case, another column containing the date (created_at) should be used for chronological sorting.
+Base62id encodes 128-bit UUIDs into compact, order-preserving strings. The result is a 22-character string using a 62-character alphabet with no special characters, making it URL-safe, HTML/XML/CSS-safe, and double-click selectable. The first character is always an uppercase letter.
 
 For keyboard entry, for filenames on case‑insensitive filesystems (Windows, macOS), or wherever automatic case‑folding or character confusion may occur, the hex-and-dash string format is RECOMMENDED over Base62id. For all other use cases, Base62id is RECOMMENDED for UUID.
 
@@ -14,7 +14,7 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "S
 
 Base62id uses a fixed, ordered 62-character alphabet: `0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz`.
 
-Human‑language locales and Microsoft Excel do not follow this character order. Therefore, by default, Base62id‑encoded UUIDs SHOULD be sorted as character strings according to the applied locale (for example, when displaying to users, printing, or working with spreadsheets).
+Human‑language locales and Microsoft Excel do not follow this character order. Therefore, by default, Base62id‑encoded UUIDs SHOULD be sorted as character strings according to the applied locale (for example, when displaying to users, printing, or working with spreadsheets). In this case, another column containing the date (created_at) should be used for chronological sorting.
 
 However, if sorting according to the internal binary representation is necessary (e.g., to preserve the same order as the raw binary form), that is allowed. In such cases, to obtain correct lexicographic order, you MUST use a binary‑safe collation, such as the C or POSIX locale.
 
