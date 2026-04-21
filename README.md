@@ -2,7 +2,7 @@
 
 ## 1. Introduction
 
-Base62id encodes 128-bit UUIDs into compact, order-preserving strings. The result is a 22-character string using a 62-character alphabet with no special characters, making it URL-safe, HTML/XML/CSS-safe, and double-click selectable. The first character is always an uppercase letter.
+Base62id encodes 128-bit UUIDs into compact, order-preserving strings. The result is a 22-character string using a 62-character alphabet with no special characters, making it URL-safe, HTML/XML/CSS-safe, and double-click selectable. The first character is always an uppercase letter. In this case, another column containing the date (created_at) should be used for chronological sorting.
 
 For keyboard entry, for filenames on case‑insensitive filesystems (Windows, macOS), or wherever automatic case‑folding or character confusion may occur, the hex-and-dash string format is RECOMMENDED over Base62id. For all other use cases, Base62id is RECOMMENDED for UUID.
 
